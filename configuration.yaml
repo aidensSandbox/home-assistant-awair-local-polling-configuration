@@ -1,0 +1,40 @@
+homeassistant:
+  unit_system: metric #change this to imperial if you want to view in F. Beware, this changes the unit system in your entire Home Assistant
+
+# Awair local polling sensor entry
+sensor: #if you already have "sensor:" in your configuration file, you'll get an error if you copy as is. In that case, make sure you put the lines below under the non-indented "Sensor:" line that already exists 
+
+  #this instance will show Awair with its Awair score, and inside it will be attributes with all the sensor values
+  - platform: rest
+    name: LAN Abu Score #change this with whatever you want your device named as, mine is Aladdin's Abu
+    json_attributes:
+      - timestamp
+      - score
+      - dew_point
+      - temp
+      - humid
+      - abs_humid
+      - co2
+      - voc
+      - voc_baseline
+      - voc_h2_raw
+      - voc_ethanol_raw
+      - pm25
+      - pm10_est
+    resource: http://192.168.1.164/air-data/latest #replace the IP address with the one your router assigns to your awair sensor
+    value_template: "{{value_json.score}}"
+    unit_of_measurement: "%"
+
+  #this instance breaks out only the temperature value and puts it as its own sensor. Pick your poison, or use both.
+  - platform: rest
+    name: LAN Abu Temp #change this with whatever you want your device named as, mine is Aladdin's Abu
+    resource: http://192.168.1.164/air-data/latest #replace the IP address with the one your router assigns to your awair sensor
+    value_template: "{{value_json.temp}}"
+    unit_of_measurement: "°C" #make sure this matches the value you see on the resource. It can get confusing.
+    
+  #template awair sensor, change values below and use as tempelate
+  -platform: rest
+   name: Example Awair's Specific Sensor Name
+   resource: http://xxx.xxx.x.xxx/air-data/latest
+   value_template: "{{value_json.enterTheObjectNamefromTheJsonFormattedOutputHere}}"
+   unit_of_measurement: "??"
