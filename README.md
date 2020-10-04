@@ -8,4 +8,4 @@ In order to get it working, you'll need to :
 3. Preferably switch that devices IP address to a static one from your router's home page/settings
 4. Copy the configurations in this repo into your configuration.yaml file on your Home Assistant
 
-bpowers made a [built-in version of this] (https://github.com/home-assistant/core/pull/39538) that would come ready made in hass.io. It serves the same purpose and it would be readily available in Hassio once they approve of his code.
+bpowers made a [built-in version of this] (https://github.com/home-assistant/core/pull/39538) that would come ready made in hass.io. It serves the same purpose and it would be readily available in Hassio once they approve of their code.
